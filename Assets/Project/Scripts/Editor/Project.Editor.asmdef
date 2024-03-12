@@ -1,0 +1,29 @@
+{
+    "name": "Project.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:41c0745b9177d944e9e3f1aac3a53ddb"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [
+        "Android",
+        "GameCoreScarlett",
+        "GameCoreXboxOne",
+        "iOS",
+        "macOSStandalone",
+        "PS4",
+        "PS5",
+        "QNX",
+        "Stadia",
+        "Switch",
+        "tvOS",
+        "XboxOne"
+    ],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
