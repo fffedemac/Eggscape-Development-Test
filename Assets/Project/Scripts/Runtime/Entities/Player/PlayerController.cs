@@ -7,7 +7,6 @@ namespace Project.Entities.Player
     {
         [field: SerializeField] public PlayerModel Model {  get; private set; }
         [field: SerializeField] public PlayerView View { get; private set; }
-        public bool IsBlocking { get; private set; }
 
         private PlayerActions _inputs;
 
@@ -21,8 +20,11 @@ namespace Project.Entities.Player
             _inputs.OnUpdate();
         }
 
-        public void TakeDamage(float damage)
+        public void TakeDamage(int damage)
         {
+            if (Model.IsBlocking)
+                damage = damage / 3;
+
             Model.CurrentHealth -= damage;
             if (Model.CurrentHealth <= 0)
                 Die();

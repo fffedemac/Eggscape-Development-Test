@@ -59,10 +59,21 @@
                 {
                     "name": "",
                     "id": "b725148f-fa81-4531-8383-d0ae68988105",
-                    "path": "",
-                    "interactions": "",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Hold(duration=0.2,pressPoint=1.401298E-45)",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
+                    "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d5c152b2-79cb-4cc7-b9da-da15595d9fe5",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "Hold(duration=0.2,pressPoint=1.401298E-45)",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Block",
                     "isComposite": false,
                     "isPartOfComposite": false
