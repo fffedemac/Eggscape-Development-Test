@@ -1,4 +1,5 @@
 using UnityEngine;
+using Project.WeaponSystem;
 
 namespace Project.Entities.Player
 {
@@ -6,10 +7,11 @@ namespace Project.Entities.Player
     {
         [field: SerializeField] public float Speed {  get; private set; }
         [field: SerializeField] public float MaxHealth {  get; private set; }
-        public float CurrentHealth {  get; private set; }
+        public float CurrentHealth {  get; set; }
+
         [field: SerializeField] public Rigidbody Rigidbody {  get; private set; }
-        [field: SerializeField] public BoxCollider MeleeWeaponCollider {  get; private set; }
-        public bool IsAttacking {  get; set; }
+        [field: SerializeField] public Weapon Weapon {  get; private set; }
+
         public bool IsBlocking {  get; set; }
     }
 }

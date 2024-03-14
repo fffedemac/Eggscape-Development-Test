@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7331194433484502746}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weapon_Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 2544874518198760537}
   - component: {fileID: 1884453447968522398}
   - component: {fileID: 1421004785994305152}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PRP_Player_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -340,8 +340,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Speed>k__BackingField: 20
+  <MaxHealth>k__BackingField: 100
   <Rigidbody>k__BackingField: {fileID: 4970055951846219425}
-  <MeleeWeaponCollider>k__BackingField: {fileID: 0}
+  <Weapon>k__BackingField: {fileID: 6105553783394776289}
 --- !u!114 &1884453447968522398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,6 +382,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PRP_Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 2839524829476184550, guid: b31cf3d5ac315214a950e823cb9e2b9f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3180619292872031068, guid: b31cf3d5ac315214a950e823cb9e2b9f,
         type: 3}
@@ -440,6 +446,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6393653256539554362}
+    - targetCorrespondingSourceObject: {fileID: 2839524829476184550, guid: b31cf3d5ac315214a950e823cb9e2b9f,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6105553783394776289}
   m_SourcePrefab: {fileID: 100100000, guid: b31cf3d5ac315214a950e823cb9e2b9f, type: 3}
 --- !u!1 &1375852023338721033 stripped
 GameObject:
@@ -468,6 +478,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.71418476, y: 2.4433331, z: 0.2464149}
   m_Center: {x: 0.00000005986978, y: 0.023723602, z: -0.00000052112085}
+--- !u!114 &6105553783394776289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375852023338721033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa8ece2116c25c4a9bc2c0bb3290cb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Damage>k__BackingField: 10
+  <TimeAttacking>k__BackingField: 1
 --- !u!4 &1752976181670118835 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3180619292872031068, guid: b31cf3d5ac315214a950e823cb9e2b9f,
