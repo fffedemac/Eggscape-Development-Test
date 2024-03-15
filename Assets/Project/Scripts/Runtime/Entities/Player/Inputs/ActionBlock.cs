@@ -5,6 +5,7 @@ namespace Project.Entities.Player.Actions
 {
     public sealed class ActionBlock
     {
+        private PlayerInputActions.PlayerActions _playerActions;
         private PlayerController _controller;
         private Weapon _playerWeapon;
 
@@ -13,20 +14,27 @@ namespace Project.Entities.Player.Actions
             _controller = controller;
             _playerWeapon = _controller.Model.Weapon;
 
+            _playerActions = playerActions;
             playerActions.Block.started += OnStartBlocking;
             playerActions.Block.performed += OnBlocking;
-            playerActions.Block.canceled += OnReleaseBlocking;
         }
 
         private void OnStartBlocking(InputAction.CallbackContext context)
         {
-            if (_playerWeapon.IsAttacking) return;
+            if (_playerWeapon.IsAttacking)
+            {
+                _playerActions.Block.canceled -= OnReleaseBlocking;
+                return;
+            }
+
+            _playerActions.Block.canceled += OnReleaseBlocking;
             _controller.View.PlayAnimation("StartBlocking");
         }
 
         private void OnBlocking(InputAction.CallbackContext context)
         {
             if (_playerWeapon.IsAttacking) return;
+
             _controller.View.PlayAnimation("Blocking");
             _controller.Model.IsBlocking = true;
         }
@@ -34,8 +42,10 @@ namespace Project.Entities.Player.Actions
         private void OnReleaseBlocking(InputAction.CallbackContext context)
         {
             if (_playerWeapon.IsAttacking) return;
+
             _controller.View.PlayAnimation("ReleaseBlocking");
             _controller.Model.IsBlocking = false;
+            _playerActions.Block.canceled -= OnReleaseBlocking;
         }
     }
 }

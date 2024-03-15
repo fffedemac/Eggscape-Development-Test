@@ -4,6 +4,7 @@ namespace Project.Entities.Player.Actions
     {
         private static PlayerInputActions _inputs;
         private static ActionMovement _inputMovement;
+        private static ActionRotate _inputRotate;
         private static ActionMeleeAttack _inputAttack;
         private static ActionBlock _inputBlock;
 
@@ -13,6 +14,7 @@ namespace Project.Entities.Player.Actions
             _inputs.Enable();
 
             _inputMovement = new ActionMovement(_inputs.Player, controller);
+            _inputRotate = new ActionRotate(_inputs.Player, controller);
             _inputAttack = new ActionMeleeAttack(_inputs.Player, controller);
             _inputBlock = new ActionBlock(_inputs.Player, controller);
         }
