@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1105f44ec40ae443bdbb79cfbe8229c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Speed>k__BackingField: 20
+  <Speed>k__BackingField: 10
   <MaxHealth>k__BackingField: 100
   <Rigidbody>k__BackingField: {fileID: 4970055951846219425}
   <Weapon>k__BackingField: {fileID: 6105553783394776289}
