@@ -1,7 +1,7 @@
-using UnityEngine;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using Project.Managers;
+using Cinemachine;
 
 namespace Project.Entities.Player
 {
@@ -11,11 +11,12 @@ namespace Project.Entities.Player
         [field: SyncVar] public bool IsReady { get; set; }
         [field: SyncVar] public PlayerModel PlayerModel { get; set; }
 
-        private void Update()
+        private void Awake()
         {
             if (!IsOwner) return;
 
-
+            CinemachineVirtualCamera playerCamera = FindObjectOfType<CinemachineVirtualCamera>();
+            playerCamera.Follow = transform;
         }
 
         public override void OnStartServer()
