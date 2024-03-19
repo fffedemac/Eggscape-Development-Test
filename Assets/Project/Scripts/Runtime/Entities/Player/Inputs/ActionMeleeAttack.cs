@@ -18,7 +18,7 @@ namespace Project.Entities.Player.Actions
         {
             if (_model.IsBlocking || _model.Weapon.IsAttacking) return;
 
-            _model.Weapon.PerformAttack();
+            _model.Weapon.RPC_PerformAttack();
             _controller.View.PlayAnimationServer("MeleeAttack");
         }
     }

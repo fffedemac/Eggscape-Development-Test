@@ -389,7 +389,8 @@ MonoBehaviour:
   - {fileID: 1421004785994305152}
   - {fileID: 4856699917232593163}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
-  <ChildNetworkObjects>k__BackingField: []
+  <ChildNetworkObjects>k__BackingField:
+  - {fileID: 0}
   SerializedTransformProperties:
     Position: {x: 0, y: 0, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
@@ -512,7 +513,6 @@ MonoBehaviour:
   _componentIndexCache: 2
   _addedNetworkObject: {fileID: 6277507982530945759}
   _networkObjectCache: {fileID: 6277507982530945759}
-  <PlayerOwner>k__BackingField: {fileID: 0}
   <Speed>k__BackingField: 10
   <MaxHealth>k__BackingField: 100
   <CurrentHealth>k__BackingField: 0
@@ -815,6 +815,21 @@ PrefabInstance:
         type: 3}
       propertyPath: _timeAttacking
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5273129319982391090, guid: b31cf3d5ac315214a950e823cb9e2b9f,
+        type: 3}
+      propertyPath: _addedNetworkObject
+      value: 
+      objectReference: {fileID: 6277507982530945759}
+    - target: {fileID: 5273129319982391090, guid: b31cf3d5ac315214a950e823cb9e2b9f,
+        type: 3}
+      propertyPath: _networkObjectCache
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5273129319982391090, guid: b31cf3d5ac315214a950e823cb9e2b9f,
+        type: 3}
+      propertyPath: <TimeAttacking>k__BackingField
+      value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

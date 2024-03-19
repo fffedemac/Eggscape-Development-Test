@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using FishNet.Object;
 
 namespace Project.WeaponSystem
 {
@@ -9,6 +10,10 @@ namespace Project.WeaponSystem
 
         private Coroutine AttackCoroutine;
 
+        [ServerRpc(RequireOwnership = false)]
+        public override void RPC_PerformAttack() => PerformAttack();
+
+        [ObserversRpc]
         public override void PerformAttack()
         {
             if (IsAttacking) return;
@@ -31,7 +36,7 @@ namespace Project.WeaponSystem
 
         protected virtual void OnTriggerEnter(Collider other)
         {
-            if (IsAttacking) return;
+            if (!IsAttacking) return;
 
             if (other.gameObject.layer == 6)
                 other.GetComponent<IDamageable>()?.TakeDamage(Damage);

@@ -122,5 +122,4 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 0}
   _networkObjectCache: {fileID: 0}
   <Damage>k__BackingField: 10
-  _isAttacking: 0
   <TimeAttacking>k__BackingField: 0
