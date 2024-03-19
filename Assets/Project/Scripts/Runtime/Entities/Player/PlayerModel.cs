@@ -14,7 +14,7 @@ namespace Project.Entities.Player
         [field: SerializeField] public Rigidbody Rigidbody {  get; private set; }
         [field: SerializeField] public Weapon Weapon {  get; private set; }
 
-        [field: SyncVar] public bool IsBlocking {  get; set; }
+        public bool IsBlocking {  get; set; }
 
         public override void OnStartClient()
         {
@@ -27,5 +27,11 @@ namespace Project.Entities.Player
                 return;
             }
         }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void RPC_SetBlocking(bool value) => SetBlocking(value);
+
+        [ObserversRpc]
+        public void SetBlocking(bool value) => IsBlocking = value;
     }
 }

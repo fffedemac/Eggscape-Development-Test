@@ -243,7 +243,6 @@ GameObject:
   - component: {fileID: 2495279801319720567}
   - component: {fileID: 6277507982530945759}
   - component: {fileID: 2501696218575929960}
-  - component: {fileID: 7643373402707433818}
   - component: {fileID: 4970055951846219425}
   - component: {fileID: 2544874518198760537}
   - component: {fileID: 1884453447968522398}
@@ -383,7 +382,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 2501696218575929960}
-  - {fileID: 7643373402707433818}
+  - {fileID: 0}
   - {fileID: 2544874518198760537}
   - {fileID: 1884453447968522398}
   - {fileID: 1421004785994305152}
@@ -450,27 +449,6 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
---- !u!114 &7643373402707433818
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4871628428670957650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 1
-  _addedNetworkObject: {fileID: 6277507982530945759}
-  _networkObjectCache: {fileID: 6277507982530945759}
-  IgnoredParameters: []
-  _animator: {fileID: 2495279801319720567}
-  _smoothFloats: 1
-  _interpolation: 2
-  _clientAuthoritative: 1
-  _sendToOwner: 0
 --- !u!54 &4970055951846219425
 Rigidbody:
   m_ObjectHideFlags: 0

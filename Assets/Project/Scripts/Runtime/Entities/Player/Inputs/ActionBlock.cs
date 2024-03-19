@@ -36,7 +36,7 @@ namespace Project.Entities.Player.Actions
             if (_playerWeapon.IsAttacking) return;
 
             _controller.View.PlayAnimationServer("Blocking");
-            _controller.Model.IsBlocking = true;
+            _controller.Model.RPC_SetBlocking(true);
         }
 
         private void OnReleaseBlocking(InputAction.CallbackContext context)
@@ -44,7 +44,7 @@ namespace Project.Entities.Player.Actions
             if (_playerWeapon.IsAttacking) return;
 
             _controller.View.PlayAnimationServer("ReleaseBlocking");
-            _controller.Model.IsBlocking = false;
+            _controller.Model.RPC_SetBlocking(false);
             _playerActions.Block.canceled -= OnReleaseBlocking;
         }
     }
