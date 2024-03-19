@@ -30,10 +30,7 @@ namespace Project.Entities.Player
         }
 
         [ServerRpc(RequireOwnership = false)]
-        public void PlayAnimationServer(string animationName)
-        {
-            PlayAnimation(animationName);
-        }
+        public void RPC_PlayAnimation(string animationName) => PlayAnimation(animationName);
 
         [ObserversRpc]
         public void PlayAnimation(string animationName)

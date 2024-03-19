@@ -9,7 +9,7 @@ namespace Project.Entities.Player
         [SerializeField] private Slider _healthSlider;
 
         [ServerRpc(RequireOwnership = false)]
-        public void UpdateHealthSliderServer(int currentHealth, int maxHealth)
+        public void RPC_UpdateHealthSlider(int currentHealth, int maxHealth)
         {
             UpdateHealthSlider(currentHealth, maxHealth);
         }

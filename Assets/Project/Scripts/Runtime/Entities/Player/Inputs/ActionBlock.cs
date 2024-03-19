@@ -28,14 +28,14 @@ namespace Project.Entities.Player.Actions
             }
 
             _playerActions.Block.canceled += OnReleaseBlocking;
-            _controller.View.PlayAnimationServer("StartBlocking");
+            _controller.View.RPC_PlayAnimation("StartBlocking");
         }
 
         private void OnBlocking(InputAction.CallbackContext context)
         {
             if (_playerWeapon.IsAttacking) return;
 
-            _controller.View.PlayAnimationServer("Blocking");
+            _controller.View.RPC_PlayAnimation("Blocking");
             _controller.Model.RPC_SetBlocking(true);
         }
 
@@ -43,7 +43,7 @@ namespace Project.Entities.Player.Actions
         {
             if (_playerWeapon.IsAttacking) return;
 
-            _controller.View.PlayAnimationServer("ReleaseBlocking");
+            _controller.View.RPC_PlayAnimation("ReleaseBlocking");
             _controller.Model.RPC_SetBlocking(false);
             _playerActions.Block.canceled -= OnReleaseBlocking;
         }

@@ -32,10 +32,7 @@ namespace Project.Entities.Player
         }
 
         [ServerRpc(RequireOwnership = false)]
-        public void TakeDamageServer(int damage)
-        {
-            TakeDamage(damage);
-        }
+        public void RPC_TakeDamage(int damage) => TakeDamage(damage);
 
         [ObserversRpc]
         public void TakeDamage(int damage)
@@ -44,7 +41,7 @@ namespace Project.Entities.Player
                 damage = damage / 3;
 
             Model.CurrentHealth -= damage;
-            Interface.UpdateHealthSliderServer(Model.CurrentHealth, Model.MaxHealth);
+            Interface.RPC_UpdateHealthSlider(Model.CurrentHealth, Model.MaxHealth);
 
             if (Model.CurrentHealth <= 0)
                 Die();
