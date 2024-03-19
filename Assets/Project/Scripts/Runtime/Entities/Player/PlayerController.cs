@@ -9,40 +9,48 @@ namespace Project.Entities.Player
     {
         [field: SerializeField] public PlayerModel Model {  get; private set; }
         [field: SerializeField] public PlayerView View { get; private set; }
+        [field: SerializeField] public PlayerUI Interface { get; private set; }
         private PlayerActions _inputs;
 
         public override void OnStartClient()
         {
             base.OnStartClient();
-            if (!IsOwner) return;
 
-            _inputs = new PlayerActions(this);
-            CinemachineVirtualCamera playerCamera = FindObjectOfType<CinemachineVirtualCamera>();
-            playerCamera.Follow = transform;
+            if (IsOwner)
+            {
+                _inputs = new PlayerActions(this);
+                CinemachineVirtualCamera playerCamera = FindObjectOfType<CinemachineVirtualCamera>();
+                playerCamera.Follow = transform;
+            }
+            else
+                enabled = false;
         }
 
         private void FixedUpdate()
         {
-            if (!IsOwner) return;
-            _inputs.OnUpdate();
+            _inputs?.OnUpdate();
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                TakeDamage(10);
+            }
         }
 
+        [ServerRpc]
         public void TakeDamage(int damage)
         {
-            if (!IsOwner) return;
-
             if (Model.IsBlocking)
                 damage = damage / 3;
 
             Model.CurrentHealth -= damage;
+            Interface.UpdateHealthSliderServer(Model.CurrentHealth, Model.MaxHealth);
+
             if (Model.CurrentHealth <= 0)
                 Die();
         }
 
         public void Die()
         {
-            if (!IsOwner) return;
-
             Debug.Log("Player Death");
         }
     }

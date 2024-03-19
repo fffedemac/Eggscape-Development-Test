@@ -12,7 +12,14 @@ namespace Project.Entities.Player
         public override void OnStartClient()
         {
             base.OnStartClient();
+
             ChangeMeshColor();
+
+            if (!IsOwner)
+            {
+                enabled = false;
+                return;
+            }
         }
 
         [ObserversRpc]
