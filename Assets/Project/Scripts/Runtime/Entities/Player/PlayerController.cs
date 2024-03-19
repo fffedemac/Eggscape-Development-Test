@@ -29,14 +29,15 @@ namespace Project.Entities.Player
         private void FixedUpdate()
         {
             _inputs?.OnUpdate();
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                TakeDamage(10);
-            }
         }
 
-        [ServerRpc]
+        [ServerRpc(RequireOwnership = false)]
+        public void TakeDamageServer(int damage)
+        {
+            TakeDamage(damage);
+        }
+
+        [ObserversRpc]
         public void TakeDamage(int damage)
         {
             if (Model.IsBlocking)

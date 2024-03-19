@@ -19,7 +19,7 @@ namespace Project.Entities.Player.Actions
             if (_model.IsBlocking || _model.Weapon.IsAttacking) return;
 
             _model.Weapon.PerformAttack();
-            _controller.View.PlayAnimation("MeleeAttack");
+            _controller.View.PlayAnimationServer("MeleeAttack");
         }
     }
 }

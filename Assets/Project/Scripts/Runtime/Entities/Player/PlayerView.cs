@@ -29,10 +29,15 @@ namespace Project.Entities.Player
                 _meshRenderer.material = _ownerMaterial;
         }
 
+        [ServerRpc(RequireOwnership = false)]
+        public void PlayAnimationServer(string animationName)
+        {
+            PlayAnimation(animationName);
+        }
+
+        [ObserversRpc]
         public void PlayAnimation(string animationName)
         {
-            if (!IsOwner) return;
-
             _animator.StopPlayback();
             _animator.Play(animationName);
         }

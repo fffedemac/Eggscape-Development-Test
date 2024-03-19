@@ -518,6 +518,7 @@ MonoBehaviour:
   <CurrentHealth>k__BackingField: 0
   <Rigidbody>k__BackingField: {fileID: 4970055951846219425}
   <Weapon>k__BackingField: {fileID: 9033637854608122333}
+  <IsBlocking>k__BackingField: 0
 --- !u!114 &1884453447968522398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,7 +571,6 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 6277507982530945759}
   _networkObjectCache: {fileID: 6277507982530945759}
   _healthSlider: {fileID: 5300833489998917853}
-  <Model>k__BackingField: {fileID: 2544874518198760537}
 --- !u!1 &8490724389552098281
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,6 +810,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5273129319982391090, guid: b31cf3d5ac315214a950e823cb9e2b9f,
+        type: 3}
+      propertyPath: _timeAttacking
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
