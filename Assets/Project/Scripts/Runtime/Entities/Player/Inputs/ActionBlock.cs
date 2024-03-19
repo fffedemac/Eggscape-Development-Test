@@ -28,23 +28,23 @@ namespace Project.Entities.Player.Actions
             }
 
             _playerActions.Block.canceled += OnReleaseBlocking;
-            _controller.View.PlayAnimation("StartBlocking");
+            _controller.View.RPC_PlayAnimation("StartBlocking");
         }
 
         private void OnBlocking(InputAction.CallbackContext context)
         {
             if (_playerWeapon.IsAttacking) return;
 
-            _controller.View.PlayAnimation("Blocking");
-            _controller.Model.IsBlocking = true;
+            _controller.View.RPC_PlayAnimation("Blocking");
+            _controller.Model.RPC_SetBlocking(true);
         }
 
         private void OnReleaseBlocking(InputAction.CallbackContext context)
         {
             if (_playerWeapon.IsAttacking) return;
 
-            _controller.View.PlayAnimation("ReleaseBlocking");
-            _controller.Model.IsBlocking = false;
+            _controller.View.RPC_PlayAnimation("ReleaseBlocking");
+            _controller.Model.RPC_SetBlocking(false);
             _playerActions.Block.canceled -= OnReleaseBlocking;
         }
     }

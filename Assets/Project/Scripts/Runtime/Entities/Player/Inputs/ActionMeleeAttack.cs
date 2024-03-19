@@ -18,8 +18,8 @@ namespace Project.Entities.Player.Actions
         {
             if (_model.IsBlocking || _model.Weapon.IsAttacking) return;
 
-            _model.Weapon.PerformAttack();
-            _controller.View.PlayAnimation("MeleeAttack");
+            _model.Weapon.RPC_PerformAttack();
+            _controller.View.RPC_PlayAnimation("MeleeAttack");
         }
     }
 }
