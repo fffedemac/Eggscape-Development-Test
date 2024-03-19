@@ -8,7 +8,7 @@ namespace Project.Entities.Player
     {
         [SerializeField] private Slider _healthSlider;
 
-        [ServerRpc(RequireOwnership = false]
+        [ServerRpc(RequireOwnership = false)]
         public void UpdateHealthSliderServer(int currentHealth, int maxHealth)
         {
             UpdateHealthSlider(currentHealth, maxHealth);
