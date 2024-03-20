@@ -1620,7 +1620,7 @@ GameObject:
   - component: {fileID: 1851197982}
   - component: {fileID: 1851197983}
   m_Layer: 5
-  m_Name: Menu
+  m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1661,6 +1661,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _createLobbyButton: {fileID: 743480564}
   _connectButton: {fileID: 1473185035}
+  _exitButton: {fileID: 628875927}
+  _idInputField: {fileID: 1515642510}
 --- !u!114 &1851197983
 MonoBehaviour:
   m_ObjectHideFlags: 0

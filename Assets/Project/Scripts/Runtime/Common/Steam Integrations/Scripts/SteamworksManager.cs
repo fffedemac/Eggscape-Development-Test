@@ -31,6 +31,12 @@ namespace Project.SteamworksIntegrations
         public void LoadMenu() => SceneManager.LoadScene(_menuName, LoadSceneMode.Additive);
         public static void CreateLobby() => SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypePublic, 2);
 
+        public static void JoinLobby(CSteamID steamID)
+        {
+            if (SteamMatchmaking.RequestLobbyData(steamID))
+                SteamMatchmaking.JoinLobby(steamID);
+        }
+
         private void OnLobbyCreated(LobbyCreated_t callback)
         {
             if (callback.m_eResult != EResult.k_EResultOK) return;
