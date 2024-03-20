@@ -1,5 +1,5 @@
-using FishNet.Object;
 using UnityEngine;
+using FishNet.Object;
 
 namespace Project.WeaponSystem
 {

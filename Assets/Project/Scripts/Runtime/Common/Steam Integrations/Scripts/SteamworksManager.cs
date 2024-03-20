@@ -8,7 +8,7 @@ namespace Project.SteamworksIntegrations
     {
         private const string _menuName = "Menu";
         [SerializeField] private NetworkManager _networkManager;
-        //[SerializeField] FishySteamworks _fishySteamworks;
+        [SerializeField] FishySteamworks.FishySteamworks _fishySteamworks;
 
         public void LoadMenu() => SceneManager.LoadScene(_menuName, LoadSceneMode.Additive);
     }
