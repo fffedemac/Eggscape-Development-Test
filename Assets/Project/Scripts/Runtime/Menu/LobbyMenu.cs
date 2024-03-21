@@ -15,22 +15,11 @@ namespace Project.Menu
         [SerializeField] private Button _backButton;
         [SerializeField] private Button _copyIDButton;
         [SerializeField] private GameObject _lobbyPlayerData;
-        [SerializeField] private GameObject _mainMenu;
 
         private void Awake()
         {
-            _backButton.onClick.AddListener(() => LeaveLobby());
+            _backButton.onClick.AddListener(() => SteamworksManager.LeaveLobby());
             _copyIDButton.onClick.AddListener(() => CopyRoomID());
-        }
-
-        private void LeaveLobby()
-        {
-            SteamworksManager.LeaveLobby();
-
-            _mainMenu.SetActive(true);
-            _backButton.gameObject.SetActive(false);
-            _copiedRoomIDText.text = "";
-            gameObject.SetActive(false);
         }
 
         private void CopyRoomID()

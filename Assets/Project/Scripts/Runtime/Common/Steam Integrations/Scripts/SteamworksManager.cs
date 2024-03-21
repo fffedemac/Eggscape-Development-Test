@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using FishNet.Managing;
 using Steamworks;
-using Project.Menu;
 
 namespace Project.SteamworksIntegrations
 {
@@ -68,8 +67,6 @@ namespace Project.SteamworksIntegrations
             CurrentLobbyID = callback.m_ulSteamIDLobby;
             _fishySteamworks.SetClientAddress(SteamMatchmaking.GetLobbyData(new CSteamID(CurrentLobbyID), "Host Address"));
             _fishySteamworks.StartConnection(false);
-
-            MainMenu.LobbyEntered();
         }
     }
 }

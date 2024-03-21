@@ -15,8 +15,6 @@ namespace Project.Menu
         [SerializeField] private Button _connectButton;
         [SerializeField] private Button _exitButton;
         [SerializeField] private TMP_InputField _idInputField;
-        [SerializeField] private GameObject _lobbyPanel;
-        [SerializeField] private GameObject _backButton;
 
         private void Awake()
         {
@@ -25,13 +23,6 @@ namespace Project.Menu
             _createLobbyButton.onClick.AddListener(() => SteamworksManager.CreateLobby());
             _connectButton.onClick.AddListener(() => SteamworksManager.JoinLobby(new CSteamID(Convert.ToUInt64(_idInputField.text))));
             _exitButton.onClick.AddListener(() => Application.Quit());
-        }
-
-        public static void LobbyEntered()
-        {
-            Instance._lobbyPanel.SetActive(true);
-            Instance._backButton.SetActive(true);
-            Instance.gameObject.SetActive(false);
         }
     }
 }
