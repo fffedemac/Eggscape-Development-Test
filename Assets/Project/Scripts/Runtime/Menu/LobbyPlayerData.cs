@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using FishNet.Object;
 
 namespace Project.Menu
 {
-    public sealed class LobbyPlayerData : MonoBehaviour
+    public sealed class LobbyPlayerData : NetworkBehaviour
     {
 
     }

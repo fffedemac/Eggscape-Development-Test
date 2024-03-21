@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using FishNet.Managing;
 using Steamworks;
+using Project.Menu;
 
 namespace Project.SteamworksIntegrations
 {
@@ -37,6 +38,16 @@ namespace Project.SteamworksIntegrations
                 SteamMatchmaking.JoinLobby(steamID);
         }
 
+        public static void LeaveLobby()
+        {
+            SteamMatchmaking.LeaveLobby(new CSteamID(CurrentLobbyID));
+            CurrentLobbyID = 0;
+
+            Instance._fishySteamworks.StopConnection(false);
+            if (Instance._networkManager.IsServer)
+                Instance._fishySteamworks.StopConnection(true);
+        }
+
         private void OnLobbyCreated(LobbyCreated_t callback)
         {
             if (callback.m_eResult != EResult.k_EResultOK) return;
@@ -57,6 +68,8 @@ namespace Project.SteamworksIntegrations
             CurrentLobbyID = callback.m_ulSteamIDLobby;
             _fishySteamworks.SetClientAddress(SteamMatchmaking.GetLobbyData(new CSteamID(CurrentLobbyID), "Host Address"));
             _fishySteamworks.StartConnection(false);
+
+            MainMenu.LobbyEntered();
         }
     }
 }
