@@ -9,7 +9,8 @@ namespace Project.SteamworksIntegrations
     {
         private static SteamworksManager Instance;
 
-        private const string _menuName = "Menu";
+        private const string _menuScene = "Menu";
+        private const string _initScene = "SteamConnection";
         [SerializeField] private NetworkManager _networkManager;
         [SerializeField] FishySteamworks.FishySteamworks _fishySteamworks;
 
@@ -28,7 +29,7 @@ namespace Project.SteamworksIntegrations
             LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
         }
 
-        public void LoadMenu() => SceneManager.LoadScene(_menuName, LoadSceneMode.Additive);
+        public void LoadMenu() => SceneManager.LoadScene(_menuScene, LoadSceneMode.Additive);
         public static void CreateLobby() => SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypePublic, 2);
 
         public static void JoinLobby(CSteamID steamID)

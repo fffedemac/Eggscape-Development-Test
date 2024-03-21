@@ -382,7 +382,6 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 2501696218575929960}
-  - {fileID: 0}
   - {fileID: 2544874518198760537}
   - {fileID: 1884453447968522398}
   - {fileID: 1421004785994305152}
@@ -488,15 +487,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1105f44ec40ae443bdbb79cfbe8229c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 2
+  _componentIndexCache: 1
   _addedNetworkObject: {fileID: 6277507982530945759}
   _networkObjectCache: {fileID: 6277507982530945759}
+  <Nickname>k__BackingField: 
   <Speed>k__BackingField: 10
   <MaxHealth>k__BackingField: 100
   <CurrentHealth>k__BackingField: 0
   <Rigidbody>k__BackingField: {fileID: 4970055951846219425}
   <Weapon>k__BackingField: {fileID: 9033637854608122333}
-  <IsBlocking>k__BackingField: 0
 --- !u!114 &1884453447968522398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,7 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357600293830b7f42a629435f0ffe091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 3
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 6277507982530945759}
   _networkObjectCache: {fileID: 6277507982530945759}
   _animator: {fileID: 2495279801319720567}
@@ -527,7 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d21eafaf880db44887ea1b1fb42b2d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 4
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 6277507982530945759}
   _networkObjectCache: {fileID: 6277507982530945759}
   <Model>k__BackingField: {fileID: 2544874518198760537}
@@ -545,7 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 423fc939df0824c4abb55e3022f1cd9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 5
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 6277507982530945759}
   _networkObjectCache: {fileID: 6277507982530945759}
   _healthSlider: {fileID: 5300833489998917853}
@@ -788,6 +787,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923370705064519398, guid: b31cf3d5ac315214a950e823cb9e2b9f,
+        type: 3}
+      propertyPath: <IsNested>k__BackingField
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5273129319982391090, guid: b31cf3d5ac315214a950e823cb9e2b9f,
         type: 3}

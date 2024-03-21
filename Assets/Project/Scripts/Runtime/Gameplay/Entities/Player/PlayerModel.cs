@@ -2,11 +2,13 @@ using UnityEngine;
 using Project.WeaponSystem;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using Project.Menu;
 
 namespace Project.Entities.Player
 {
     public sealed class PlayerModel : NetworkBehaviour
     {
+        [field: SyncVar] public string Nickname { get; set; }
         [field: SerializeField] public float Speed { get; private set; }
         [field: SerializeField, SyncVar] public int MaxHealth { get; private set; }
         [field: SerializeField, SyncVar] public int CurrentHealth {  get; set; }
@@ -15,11 +17,13 @@ namespace Project.Entities.Player
         [field: SerializeField] public Weapon Weapon {  get; private set; }
 
         public bool IsBlocking {  get; set; }
+        public bool IsReady {  get; set; }
 
         public override void OnStartClient()
         {
             base.OnStartClient();
             CurrentHealth = MaxHealth;
+            LobbyMenu.RPC_CreatePlayerData(this);
 
             if (!IsOwner)
             {

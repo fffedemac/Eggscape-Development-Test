@@ -23,5 +23,10 @@ namespace Project.Entities.Player.Actions
         {
             _inputMovement.OnUpdate();
         }
+
+        public void OnDisable()
+        {
+            _inputRotate.Disable();
+        }
     }
 }

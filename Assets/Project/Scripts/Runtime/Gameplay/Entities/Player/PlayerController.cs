@@ -28,6 +28,7 @@ namespace Project.Entities.Player
 
         private void FixedUpdate()
         {
+            if (!Model.IsReady) return;
             _inputs?.OnUpdate();
         }
 
@@ -50,6 +51,13 @@ namespace Project.Entities.Player
         public void Die()
         {
             Debug.Log("Player Death");
+        }
+
+        public override void OnStopClient()
+        {
+            base.OnStopClient();
+            if (IsOwner)
+                _inputs.OnDisable();
         }
     }
 }
