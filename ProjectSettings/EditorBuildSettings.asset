@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Project/Scenes/SteamConnection.unity
     guid: 63da6c4519a94e04baa0aed1c7dba480
-  - enabled: 0
+  - enabled: 1
     path: Assets/Project/Scenes/Menu.unity
     guid: cff2be1146df59740ae05726dda1ca7f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Project/Scenes/Test.unity
     guid: be78eb8617c3bbf438ea344e34bad076
   - enabled: 1
