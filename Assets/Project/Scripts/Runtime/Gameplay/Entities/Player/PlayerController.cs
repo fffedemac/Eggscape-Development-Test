@@ -26,9 +26,15 @@ namespace Project.Entities.Player
                 enabled = false;
         }
 
+        public override void OnStartServer()
+        {
+            base.OnStartServer();
+            GameManager.Instance.Players.Add(this);
+        }
+
         private void FixedUpdate()
         {
-            if (!Model.IsReady) return;
+            if (Model.IsPaused) return;
             _inputs?.OnUpdate();
         }
 
@@ -56,8 +62,15 @@ namespace Project.Entities.Player
         public override void OnStopClient()
         {
             base.OnStopClient();
-            if (IsOwner)
-                _inputs.OnDisable();
+            if (!IsOwner) return;
+
+            _inputs.OnDisable();
+        }
+
+        public override void OnStopServer()
+        {
+            base.OnStopServer();
+            GameManager.Instance.Players.Remove(this);
         }
     }
 }
