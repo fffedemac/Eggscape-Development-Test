@@ -1,27 +1,24 @@
 using UnityEngine;
 using UnityEngine.UI;
-using FishNet;
+using Project.SteamworksIntegrations;
+using Steamworks;
+using System;
 using TMPro;
-using System.Text;
 
 namespace Project.Menu
 {
     public sealed class MainMenu : MonoBehaviour
     {
-        private StringBuilder _sbServerStatus = new StringBuilder();
-        [SerializeField] private TMP_Text _serverStatusText;
-        [SerializeField] private Button _hostButton;
+        [SerializeField] private Button _createLobbyButton;
         [SerializeField] private Button _connectButton;
+        [SerializeField] private Button _exitButton;
+        [SerializeField] private TMP_InputField _idInputField;
 
         private void Awake()
         {
-            _hostButton.onClick.AddListener(() =>
-            {
-                InstanceFinder.ServerManager.StartConnection();
-                InstanceFinder.ClientManager.StartConnection();
-            });
-
-            _connectButton.onClick.AddListener(() => InstanceFinder.ClientManager.StartConnection());
+            _createLobbyButton.onClick.AddListener(() => SteamworksManager.CreateLobby());
+            _connectButton.onClick.AddListener(() => SteamworksManager.JoinLobby(new CSteamID(Convert.ToUInt64(_idInputField.text))));
+            _exitButton.onClick.AddListener(() => Application.Quit());
         }
     }
 }
