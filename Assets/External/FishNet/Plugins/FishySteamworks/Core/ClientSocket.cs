@@ -1,5 +1,4 @@
 #if !FISHYSTEAMWORKS
-using FishNet.Managing;
 using FishNet.Managing.Logging;
 using FishNet.Transporting;
 using Steamworks;
@@ -127,12 +126,14 @@ namespace FishySteamworks.Client
             }
             else if (args.m_info.m_eState == ESteamNetworkingConnectionState.k_ESteamNetworkingConnectionState_ClosedByPeer || args.m_info.m_eState == ESteamNetworkingConnectionState.k_ESteamNetworkingConnectionState_ProblemDetectedLocally)
             {
-                base.Transport.NetworkManager.Log($"Connection was closed by peer, {args.m_info.m_szEndDebug}");
+                if (base.Transport.NetworkManager.CanLog(LoggingType.Common))
+                    Debug.Log($"Connection was closed by peer, {args.m_info.m_szEndDebug}");
                 StopConnection();
             }
             else
             {
-                base.Transport.NetworkManager.Log($"Connection state changed: {args.m_info.m_eState.ToString()} - {args.m_info.m_szEndDebug}");
+                if (base.Transport.NetworkManager.CanLog(LoggingType.Common))
+                    Debug.Log($"Connection state changed: {args.m_info.m_eState.ToString()} - {args.m_info.m_szEndDebug}");
             }
         }
 
@@ -201,12 +202,14 @@ namespace FishySteamworks.Client
             EResult res = base.Send(_socket, segment, channelId);
             if (res == EResult.k_EResultNoConnection || res == EResult.k_EResultInvalidParam)
             {
-                base.Transport.NetworkManager.Log($"Connection to server was lost.");
+                if (base.Transport.NetworkManager.CanLog(LoggingType.Common))
+                    Debug.Log($"Connection to server was lost.");
                 StopConnection();
             }
             else if (res != EResult.k_EResultOK)
             {
-                base.Transport.NetworkManager.LogError($"Could not send: {res.ToString()}");
+                if (base.Transport.NetworkManager.CanLog(LoggingType.Error))
+                    Debug.LogError($"Could not send: {res.ToString()}");
             }
         }
 

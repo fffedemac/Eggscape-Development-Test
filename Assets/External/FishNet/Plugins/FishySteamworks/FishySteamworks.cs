@@ -26,6 +26,12 @@ namespace FishySteamworks
 
         #region Serialized.
         /// <summary>
+        /// Steam application Id.
+        /// </summary>
+        [Tooltip("Steam application Id.")]
+        [SerializeField]
+        private ulong _steamAppID = 480;
+        /// <summary>
         /// Address server should bind to.
         /// </summary>
         [Tooltip("Address server should bind to.")]
@@ -75,10 +81,6 @@ namespace FishySteamworks
         /// Server for the transport.
         /// </summary>
         private Server.ServerSocket _server;
-        /// <summary>
-        /// True if shutdown had been called, and not initializing nor initialized.
-        /// </summary>
-        private bool _shutdownCalled = true;
         #endregion
 
         #region Const.
@@ -97,6 +99,7 @@ namespace FishySteamworks
             _server = new Server.ServerSocket();
 
             CreateChannelData();
+            WriteSteamAppId();
             _client.Initialize(this);
             _clientHost.Initialize(this);
             _server.Initialize(this);
@@ -124,6 +127,35 @@ namespace FishySteamworks
                 1200
             };
         }
+        /// <summary>
+        /// Writes SteamAppId to file.
+        /// </summary>
+        private void WriteSteamAppId()
+        {
+            string fileName = "steam_appid.txt";
+            string appIdText = _steamAppID.ToString();
+            try
+            {
+                if (File.Exists(fileName))
+                {
+                    string content = File.ReadAllText(fileName);
+                    if (content != appIdText)
+                    {
+                        File.WriteAllText(fileName, appIdText);
+                        Debug.Log($"SteamId has been updated from {content} to {appIdText} within {fileName}.");
+                    }
+                }
+                else
+                {
+                    File.WriteAllText(fileName, appIdText);
+                    Debug.Log($"SteamId {appIdText} has been set within {fileName}.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"There was an exception when trying to write {appIdText} to {fileName}: {ex.Message}");
+            }
+        }
 
         /// <summary>
         /// Tries to initialize steam network access.
@@ -133,13 +165,12 @@ namespace FishySteamworks
             try
             {
 #if UNITY_SERVER
-                SteamGameServerNetworkingUtils.InitRelayNetworkAccess();
+            SteamGameServerNetworkingUtils.InitRelayNetworkAccess();
 #else
                 SteamNetworkingUtils.InitRelayNetworkAccess();
                 if (IsNetworkAccessAvailable())
                     LocalUserSteamID = SteamUser.GetSteamID().m_SteamID;
 #endif
-                _shutdownCalled = false;
                 return true;
             }
             catch
@@ -403,10 +434,6 @@ namespace FishySteamworks
         /// </summary>
         public override void Shutdown()
         {
-            if (_shutdownCalled)
-                return;
-
-            _shutdownCalled = true;
             //Stops client then server connections.
             StopConnection(false);
             StopConnection(true);
@@ -421,18 +448,21 @@ namespace FishySteamworks
         {
             if (!InitializeRelayNetworkAccess())
             {
-                base.NetworkManager.LogError($"RelayNetworkAccess could not be initialized.");
+                if (NetworkManager.CanLog(LoggingType.Error))
+                    Debug.LogError($"RelayNetworkAccess could not be initialized.");
                 return false;
             }
             if (!IsNetworkAccessAvailable())
             {
-                base.NetworkManager.LogError("Server network access is not available.");
+                if (NetworkManager.CanLog(LoggingType.Error))
+                    Debug.LogError("Server network access is not available.");
                 return false;
             }
             _server.ResetInvalidSocket();
             if (_server.GetLocalConnectionState() != LocalConnectionState.Stopped)
             {
-                base.NetworkManager.LogError("Server is already running.");
+                if (NetworkManager.CanLog(LoggingType.Error))
+                    Debug.LogError("Server is already running.");
                 return false;
             }
 
@@ -473,7 +503,8 @@ namespace FishySteamworks
             {
                 if (_client.GetLocalConnectionState() != LocalConnectionState.Stopped)
                 {
-                    base.NetworkManager.LogError("Client is already running.");
+                    if (NetworkManager.CanLog(LoggingType.Error))
+                        Debug.LogError("Client is already running.");
                     return false;
                 }
                 //Stop client host if running.
@@ -482,12 +513,14 @@ namespace FishySteamworks
                 //Initialize.
                 if (!InitializeRelayNetworkAccess())
                 {
-                    base.NetworkManager.LogError($"RelayNetworkAccess could not be initialized.");
+                    if (NetworkManager.CanLog(LoggingType.Error))
+                        Debug.LogError($"RelayNetworkAccess could not be initialized.");
                     return false;
                 }
                 if (!IsNetworkAccessAvailable())
                 {
-                    base.NetworkManager.LogError("Client network access is not available.");
+                    if (NetworkManager.CanLog(LoggingType.Error))
+                        Debug.LogError("Client network access is not available.");
                     return false;
                 }
 

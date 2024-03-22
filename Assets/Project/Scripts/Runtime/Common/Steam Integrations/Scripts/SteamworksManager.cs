@@ -53,6 +53,7 @@ namespace Project.SteamworksIntegrations
             if (callback.m_eResult != EResult.k_EResultOK) return;
 
             CurrentLobbyID = callback.m_ulSteamIDLobby;
+            Debug.Log(SteamUser.GetSteamID().ToString());
             SteamMatchmaking.SetLobbyData(new CSteamID(CurrentLobbyID), "Host Address", SteamUser.GetSteamID().ToString());
             _fishySteamworks.SetClientAddress(SteamUser.GetSteamID().ToString());
             _fishySteamworks.StartConnection(true);
