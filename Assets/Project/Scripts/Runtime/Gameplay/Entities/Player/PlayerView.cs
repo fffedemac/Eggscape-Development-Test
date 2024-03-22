@@ -5,9 +5,15 @@ namespace Project.Entities.Player
 {
     public sealed class PlayerView : NetworkBehaviour
     {
-        [SerializeField] private Animator _animator;
-        [SerializeField] private MeshRenderer _meshRenderer;
+        private Animator _animator;
+        private MeshRenderer _meshRenderer;
         [SerializeField] private Material _ownerMaterial;
+
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+            _meshRenderer = GetComponent<MeshRenderer>();
+        }
 
         public override void OnStartClient()
         {
@@ -24,7 +30,7 @@ namespace Project.Entities.Player
         public void RPC_PlayAnimation(string animationName) => PlayAnimation(animationName);
 
         [ObserversRpc]
-        public void PlayAnimation(string animationName)
+        private void PlayAnimation(string animationName)
         {
             _animator.StopPlayback();
             _animator.Play(animationName);

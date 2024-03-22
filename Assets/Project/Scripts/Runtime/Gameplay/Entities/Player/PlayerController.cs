@@ -21,6 +21,14 @@ namespace Project.Entities.Player
             _healthComponent.RegisterObservable(this);
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                RPC_StartDying();
+            }
+        }
+
         private void FixedUpdate()
         {
             if (Model.IsPaused) return;
@@ -47,7 +55,7 @@ namespace Project.Entities.Player
 
         private IEnumerator Death()
         {
-            View.RPC_PlayAnimation("Dying");
+            View.RPC_PlayAnimation("Death");
             Model.IsPaused = true;
             yield return new WaitForSeconds(3);
 
