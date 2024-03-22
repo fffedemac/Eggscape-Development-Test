@@ -1,7 +1,6 @@
 using UnityEngine;
 using Project.WeaponSystem;
 using FishNet.Object;
-using FishNet.Object.Synchronizing;
 
 namespace Project.Entities.Player
 {

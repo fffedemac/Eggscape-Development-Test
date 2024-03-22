@@ -244,9 +244,9 @@ GameObject:
   - component: {fileID: 6277507982530945759}
   - component: {fileID: 2501696218575929960}
   - component: {fileID: 4970055951846219425}
+  - component: {fileID: 1421004785994305152}
   - component: {fileID: 2544874518198760537}
   - component: {fileID: 1884453447968522398}
-  - component: {fileID: 1421004785994305152}
   - component: {fileID: 7348681504889969515}
   m_Layer: 6
   m_Name: PRP_Player_1
@@ -385,9 +385,10 @@ MonoBehaviour:
   - {fileID: 2544874518198760537}
   - {fileID: 1884453447968522398}
   - {fileID: 1421004785994305152}
+  - {fileID: 7348681504889969515}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField:
-  - {fileID: 0}
+  - {fileID: 144847699324459017}
   SerializedTransformProperties:
     Position: {x: 0, y: 0, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
@@ -397,7 +398,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 5
+  <PrefabId>k__BackingField: 6
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -474,6 +475,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1421004785994305152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4871628428670957650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d21eafaf880db44887ea1b1fb42b2d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 3
+  _addedNetworkObject: {fileID: 6277507982530945759}
+  _networkObjectCache: {fileID: 6277507982530945759}
 --- !u!114 &2544874518198760537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,21 +526,6 @@ MonoBehaviour:
   _animator: {fileID: 2495279801319720567}
   _meshRenderer: {fileID: 5799241483804826591}
   _ownerMaterial: {fileID: 2100000, guid: 3cf8dac6d414d234ebfd9649d58322c7, type: 2}
---- !u!114 &1421004785994305152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4871628428670957650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d21eafaf880db44887ea1b1fb42b2d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 3
-  _addedNetworkObject: {fileID: 6277507982530945759}
-  _networkObjectCache: {fileID: 6277507982530945759}
 --- !u!114 &7348681504889969515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,9 +538,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603399b4df33833449165598ba5853ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 6277507982530945759}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 6277507982530945759}
   _maxHealth: 100
   _healthSlider: {fileID: 5300833489998917853}
 --- !u!1 &8490724389552098281
@@ -787,6 +788,16 @@ PrefabInstance:
       propertyPath: <IsNested>k__BackingField
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3923370705064519398, guid: b31cf3d5ac315214a950e823cb9e2b9f,
+        type: 3}
+      propertyPath: <ComponentIndex>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3923370705064519398, guid: b31cf3d5ac315214a950e823cb9e2b9f,
+        type: 3}
+      propertyPath: <ParentNetworkObject>k__BackingField
+      value: 
+      objectReference: {fileID: 6277507982530945759}
     - target: {fileID: 5273129319982391090, guid: b31cf3d5ac315214a950e823cb9e2b9f,
         type: 3}
       propertyPath: _timeAttacking
@@ -801,7 +812,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _networkObjectCache
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 144847699324459017}
     - target: {fileID: 5273129319982391090, guid: b31cf3d5ac315214a950e823cb9e2b9f,
         type: 3}
       propertyPath: <TimeAttacking>k__BackingField
@@ -812,6 +823,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b31cf3d5ac315214a950e823cb9e2b9f, type: 3}
+--- !u!114 &144847699324459017 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3923370705064519398, guid: b31cf3d5ac315214a950e823cb9e2b9f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3778527687800209135}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1752976181670118835 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3180619292872031068, guid: b31cf3d5ac315214a950e823cb9e2b9f,

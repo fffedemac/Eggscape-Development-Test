@@ -10,8 +10,6 @@ namespace Project.Entities.Player
 
         public override void OnStartClient()
         {
-            base.OnStartClient();
-
             if (IsOwner)
             {
                 _inputs = new PlayerActions(this);

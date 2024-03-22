@@ -11,23 +11,14 @@ namespace Project.Entities.Player
 
         public override void OnStartClient()
         {
-            base.OnStartClient();
-
             ChangeMeshColor();
 
             if (!IsOwner)
-            {
                 enabled = false;
-                return;
-            }
         }
 
         [ObserversRpc]
-        private void ChangeMeshColor()
-        {
-            if (IsOwner)
-                _meshRenderer.material = _ownerMaterial;
-        }
+        private void ChangeMeshColor() => _meshRenderer.material = _ownerMaterial;
 
         [ServerRpc(RequireOwnership = false)]
         public void RPC_PlayAnimation(string animationName) => PlayAnimation(animationName);
