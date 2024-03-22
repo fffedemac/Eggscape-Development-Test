@@ -1,17 +1,17 @@
 using UnityEngine;
-using UnityEngine.UI;
 using FishNet.Object;
+using UnityEngine.UI;
 
-namespace Project.Entities.Player
+namespace Project.Behaviours.HealthComponent
 {
-    public sealed class PlayerUI : NetworkBehaviour
+    public sealed partial class HealthComponent : NetworkBehaviour
     {
         [SerializeField] private Slider _healthSlider;
 
         [ServerRpc(RequireOwnership = false)]
-        public void RPC_UpdateHealthSlider(int currentHealth, int maxHealth)
+        public void RPC_UpdateHealthSlider()
         {
-            UpdateHealthSlider(currentHealth, maxHealth);
+            UpdateHealthSlider(_currentHealth, _maxHealth);
         }
 
         [ObserversRpc]

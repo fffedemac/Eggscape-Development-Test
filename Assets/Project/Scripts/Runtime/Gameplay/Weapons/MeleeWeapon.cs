@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using FishNet.Object;
+using Project.Entities.Player;
+using Project.Behaviours.HealthComponent;
 
 namespace Project.WeaponSystem
 {
@@ -39,7 +41,14 @@ namespace Project.WeaponSystem
             if (!IsAttacking) return;
 
             if (other.gameObject.layer == 6)
-                other.GetComponent<IDamageable>()?.TakeDamage(Damage);
+            {
+                int tempDamage = Damage;
+                if ((bool)other.GetComponent<PlayerModel>()?.IsBlocking)
+                    tempDamage = Damage / 3;
+
+                other.GetComponent<HealthComponent>()?.RPC_TakeDamage(tempDamage);
+            }
+                
         }
     }
 }

@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 2544874518198760537}
   - component: {fileID: 1884453447968522398}
   - component: {fileID: 1421004785994305152}
-  - component: {fileID: 4856699917232593163}
+  - component: {fileID: 7348681504889969515}
   m_Layer: 6
   m_Name: PRP_Player_1
   m_TagString: Untagged
@@ -385,7 +385,6 @@ MonoBehaviour:
   - {fileID: 2544874518198760537}
   - {fileID: 1884453447968522398}
   - {fileID: 1421004785994305152}
-  - {fileID: 4856699917232593163}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField:
   - {fileID: 0}
@@ -490,10 +489,7 @@ MonoBehaviour:
   _componentIndexCache: 1
   _addedNetworkObject: {fileID: 6277507982530945759}
   _networkObjectCache: {fileID: 6277507982530945759}
-  <Nickname>k__BackingField: 
   <Speed>k__BackingField: 10
-  <MaxHealth>k__BackingField: 100
-  <CurrentHealth>k__BackingField: 0
   <Rigidbody>k__BackingField: {fileID: 4970055951846219425}
   <Weapon>k__BackingField: {fileID: 9033637854608122333}
 --- !u!114 &1884453447968522398
@@ -529,10 +525,7 @@ MonoBehaviour:
   _componentIndexCache: 3
   _addedNetworkObject: {fileID: 6277507982530945759}
   _networkObjectCache: {fileID: 6277507982530945759}
-  <Model>k__BackingField: {fileID: 2544874518198760537}
-  <View>k__BackingField: {fileID: 1884453447968522398}
-  <Interface>k__BackingField: {fileID: 4856699917232593163}
---- !u!114 &4856699917232593163
+--- !u!114 &7348681504889969515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -541,12 +534,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4871628428670957650}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 423fc939df0824c4abb55e3022f1cd9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 603399b4df33833449165598ba5853ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 4
+  _componentIndexCache: 255
   _addedNetworkObject: {fileID: 6277507982530945759}
-  _networkObjectCache: {fileID: 6277507982530945759}
+  _networkObjectCache: {fileID: 0}
+  _maxHealth: 100
   _healthSlider: {fileID: 5300833489998917853}
 --- !u!1 &8490724389552098281
 GameObject:
