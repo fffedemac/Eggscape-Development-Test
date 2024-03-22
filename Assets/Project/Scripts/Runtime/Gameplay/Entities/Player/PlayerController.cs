@@ -1,35 +1,19 @@
 using UnityEngine;
-using Project.Entities.Player.Actions;
 using FishNet.Object;
-using Cinemachine;
 
 namespace Project.Entities.Player
 {
-    public sealed class PlayerController : NetworkBehaviour, IDamageable
+    public sealed partial class PlayerController : NetworkBehaviour, IDamageable
     {
-        [field: SerializeField] public PlayerModel Model {  get; private set; }
-        [field: SerializeField] public PlayerView View { get; private set; }
-        [field: SerializeField] public PlayerUI Interface { get; private set; }
-        private PlayerActions _inputs;
+        public PlayerModel Model {  get; private set; }
+        public PlayerView View { get; private set; }
+        private PlayerUI _ui;
 
-        public override void OnStartClient()
+        private void Awake()
         {
-            base.OnStartClient();
-
-            if (IsOwner)
-            {
-                _inputs = new PlayerActions(this);
-                CinemachineVirtualCamera playerCamera = FindObjectOfType<CinemachineVirtualCamera>();
-                playerCamera.Follow = transform;
-            }
-            else
-                enabled = false;
-        }
-
-        public override void OnStartServer()
-        {
-            base.OnStartServer();
-            GameManager.Instance.Players.Add(this);
+            Model = GetComponent<PlayerModel>();
+            View = GetComponent<PlayerView>();
+            _ui = GetComponent<PlayerUI>();
         }
 
         private void FixedUpdate()
@@ -48,29 +32,19 @@ namespace Project.Entities.Player
                 damage = damage / 3;
 
             Model.CurrentHealth -= damage;
-            Interface.RPC_UpdateHealthSlider(Model.CurrentHealth, Model.MaxHealth);
+            _ui.RPC_UpdateHealthSlider(Model.CurrentHealth, Model.MaxHealth);
 
             if (Model.CurrentHealth <= 0)
-                Die();
+                RPC_Die();
         }
 
+        [ServerRpc(RequireOwnership = false)]
+        public void RPC_Die() => Die();
+
+        [ObserversRpc]
         public void Die()
         {
             Debug.Log("Player Death");
-        }
-
-        public override void OnStopClient()
-        {
-            base.OnStopClient();
-            if (!IsOwner) return;
-
-            _inputs.OnDisable();
-        }
-
-        public override void OnStopServer()
-        {
-            base.OnStopServer();
-            GameManager.Instance.Players.Remove(this);
         }
     }
 }
