@@ -12,7 +12,6 @@ namespace Project.Entities.Player
         [field: SerializeField] public Weapon Weapon {  get; private set; }
 
         public bool IsBlocking {  get; set; }
-        public bool IsPaused { get; set; } = true;
 
 
         [ServerRpc(RequireOwnership = false)]

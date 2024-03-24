@@ -11,6 +11,7 @@ namespace Project.Entities.Player
         public PlayerView View { get; private set; }
         private HealthComponent _healthComponent;
         private Coroutine DeathCoroutine;
+        public bool IsPaused { get; set; } = true;
 
         private void Awake()
         {
@@ -23,8 +24,22 @@ namespace Project.Entities.Player
 
         private void FixedUpdate()
         {
-            if (Model.IsPaused) return;
-            _inputs?.OnUpdate();
+            if (!IsPaused)
+                _inputs?.OnUpdate();
+        }
+
+        public void PausePlayer(bool value)
+        {
+            if (value == true)
+            {
+                IsPaused = true;
+                _inputs?.OnDisable();
+            }
+            else
+            {
+                IsPaused = false;
+                _inputs?.OnEnable();
+            }
         }
 
         #region Player Death Behaviour
@@ -48,12 +63,12 @@ namespace Project.Entities.Player
         private IEnumerator Death()
         {
             View.RPC_PlayAnimation("Death");
-            Model.IsPaused = true;
+            PausePlayer(true);
             yield return new WaitForSeconds(3);
 
             View.RPC_PlayAnimation("Idle");
             _healthComponent.RPC_ResetValues();
-            Model.IsPaused = false;
+            PausePlayer(false);
         }
 
         #endregion

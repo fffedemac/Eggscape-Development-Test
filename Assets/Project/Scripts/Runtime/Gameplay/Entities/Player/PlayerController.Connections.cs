@@ -6,13 +6,13 @@ namespace Project.Entities.Player
 {
     public sealed partial class PlayerController : NetworkBehaviour
     {
-        private PlayerActions _inputs;
+        private PlayerActionsController _inputs;
 
         public override void OnStartClient()
         {
             if (IsOwner)
             {
-                _inputs = new PlayerActions(this);
+                _inputs = new PlayerActionsController(this);
                 CinemachineVirtualCamera playerCamera = FindObjectOfType<CinemachineVirtualCamera>();
                 playerCamera.Follow = transform;
             }

@@ -28,7 +28,7 @@ namespace Project
         private void StartGame()
         {
             foreach (PlayerController player in Players)
-                player.Model.IsPaused = false;
+                player.PausePlayer(false);
 
             _lobbyPanel.SetActive(false);
         }
