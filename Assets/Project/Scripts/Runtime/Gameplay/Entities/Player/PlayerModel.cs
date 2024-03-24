@@ -8,6 +8,7 @@ namespace Project.Entities.Player
     {
         [field: SerializeField] public float Speed { get; private set; }
         [field: SerializeField] public Rigidbody Rigidbody {  get; private set; }
+        [field: SerializeField] public GameObject Player_Root {  get; private set; }
         [field: SerializeField] public Weapon Weapon {  get; private set; }
 
         public bool IsBlocking {  get; set; }

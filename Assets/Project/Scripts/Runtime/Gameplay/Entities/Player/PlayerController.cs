@@ -21,14 +21,6 @@ namespace Project.Entities.Player
             _healthComponent.RegisterObservable(this);
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                RPC_StartDying();
-            }
-        }
-
         private void FixedUpdate()
         {
             if (Model.IsPaused) return;

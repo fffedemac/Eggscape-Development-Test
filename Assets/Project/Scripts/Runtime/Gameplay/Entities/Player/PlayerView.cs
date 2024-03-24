@@ -12,18 +12,21 @@ namespace Project.Entities.Player
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-            _meshRenderer = GetComponent<MeshRenderer>();
+            _meshRenderer = GetComponentInChildren<MeshRenderer>();
+            
         }
 
         public override void OnStartClient()
         {
-            ChangeMeshColor();
-
             if (!IsOwner)
+            {
                 enabled = false;
+                return;
+            }
+
+            ChangeMeshColor();
         }
 
-        [ObserversRpc]
         private void ChangeMeshColor() => _meshRenderer.material = _ownerMaterial;
 
         [ServerRpc(RequireOwnership = false)]

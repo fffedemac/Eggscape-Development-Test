@@ -22,7 +22,6 @@ namespace Project.Menu
 
         public override void OnStartClient()
         {
-            base.OnStartClient();
             if (IsHost)
                 _startButton.gameObject.SetActive(true);
             else
