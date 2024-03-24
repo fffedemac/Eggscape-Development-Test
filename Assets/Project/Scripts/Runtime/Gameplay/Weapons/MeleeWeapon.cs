@@ -1,21 +1,18 @@
 using UnityEngine;
 using System.Collections;
 using FishNet.Object;
-using Project.Entities.Player;
-using Project.Behaviours.HealthComponent;
 
 namespace Project.WeaponSystem
 {
-    public class MeleeWeapon : Weapon
+    public partial class MeleeWeapon : Weapon
     {
         [field: SerializeField] public float TimeAttacking {  get; private set; }
-
         private Coroutine AttackCoroutine;
 
-        [ServerRpc(RequireOwnership = false)]
+        [ServerRpc]
         public override void RPC_PerformAttack() => PerformAttack();
 
-        [ObserversRpc]
+        [ObserversRpc(ExcludeOwner = true)]
         public override void PerformAttack()
         {
             if (IsAttacking) return;
@@ -34,21 +31,7 @@ namespace Project.WeaponSystem
             IsAttacking = true;
             yield return new WaitForSeconds(TimeAttacking);
             IsAttacking = false;
-        }
-
-        protected virtual void OnTriggerEnter(Collider other)
-        {
-            if (!IsAttacking) return;
-
-            if (other.gameObject.layer == 6)
-            {
-                int tempDamage = Damage;
-                if ((bool)other.GetComponent<PlayerModel>()?.IsBlocking)
-                    tempDamage = Damage / 3;
-
-                other.GetComponent<HealthComponent>()?.RPC_TakeDamage(tempDamage);
-            }
-                
+            _damagedObjects.Clear();
         }
     }
 }
