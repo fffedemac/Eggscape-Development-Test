@@ -13,7 +13,6 @@ namespace Project.Entities.Player
         {
             _animator = GetComponent<Animator>();
             _meshRenderer = GetComponentInChildren<MeshRenderer>();
-            
         }
 
         public override void OnStartClient()
