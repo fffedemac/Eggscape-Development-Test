@@ -19,7 +19,7 @@ namespace Project.Behaviours.HealthComponent
                 enabled = false;
         }
 
-        [ServerRpc(RequireOwnership = false)]
+        [ServerRpc]
         public void RPC_TakeDamage(int damage) => TakeDamage(damage);
 
         [ServerRpc(RequireOwnership = false)]

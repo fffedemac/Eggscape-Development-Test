@@ -274,7 +274,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 214155578302756071}
   _networkObjectCache: {fileID: 6092563717327585819}
   <Damage>k__BackingField: 10
-  <TimeAttacking>k__BackingField: 1.2
+  <TimeAttacking>k__BackingField: 1
 --- !u!114 &6092563717327585819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,7 +627,7 @@ GameObject:
   - component: {fileID: 5689484670018043612}
   - component: {fileID: 7018434067480945437}
   m_Layer: 6
-  m_Name: PRP_Player
+  m_Name: PRP_Player_Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -756,7 +756,7 @@ MonoBehaviour:
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 3936818092441042157
+  <AssetPathHash>k__BackingField: 2908513568666647418
 --- !u!114 &8623746927106263671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,7 +817,6 @@ MonoBehaviour:
   _componentIndexCache: 1
   _addedNetworkObject: {fileID: 2938912445114717394}
   _networkObjectCache: {fileID: 2938912445114717394}
-  <View>k__BackingField: {fileID: 5689484670018043612}
 --- !u!114 &3783664449994340496
 MonoBehaviour:
   m_ObjectHideFlags: 0

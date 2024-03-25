@@ -9,10 +9,10 @@ namespace Project.WeaponSystem
         [field: SerializeField] public float TimeAttacking {  get; private set; }
         private Coroutine AttackCoroutine;
 
-        [ServerRpc]
+        [ServerRpc(RequireOwnership = false)]
         public override void RPC_PerformAttack() => PerformAttack();
 
-        [ObserversRpc(ExcludeOwner = true)]
+        [ObserversRpc]
         public override void PerformAttack()
         {
             if (IsAttacking) return;
