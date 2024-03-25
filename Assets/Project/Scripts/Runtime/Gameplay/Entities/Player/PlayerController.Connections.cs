@@ -22,7 +22,12 @@ namespace Project.Entities.Player
                 enabled = false;
         }
 
-        public override void OnStopClient() => _inputs.OnDisable();
+        public override void OnStopClient()
+        {
+            if (IsOwner)
+                _inputs.OnDisable();
+        }
+
         public override void OnStopServer() => GameManager.Instance.Players.Remove(this);
     }
 }
