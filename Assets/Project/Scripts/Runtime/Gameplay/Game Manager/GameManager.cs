@@ -21,6 +21,18 @@ namespace Project
             _startGameButton.onClick.AddListener(() => RPC_StartGame());
         }
 
+        public void PlayerConnected(PlayerController player)
+        {
+            if (!Players.Contains(player))
+                Players.Add(player);
+
+            if (Players.Count > 1)
+            {
+                if (IsHost)
+                    _startGameButton.gameObject.SetActive(true);
+            }
+        }
+
         [ServerRpc(RequireOwnership = false)]
         private void RPC_StartGame() => StartGame();
 
@@ -28,7 +40,7 @@ namespace Project
         private void StartGame()
         {
             foreach (PlayerController player in Players)
-                player.Model.IsPaused = false;
+                player.PausePlayer(false);
 
             _lobbyPanel.SetActive(false);
         }

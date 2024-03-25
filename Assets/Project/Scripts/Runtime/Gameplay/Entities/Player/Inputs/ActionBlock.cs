@@ -3,20 +3,16 @@ using Project.WeaponSystem;
 
 namespace Project.Entities.Player.Actions
 {
-    public sealed class ActionBlock
+    public sealed class ActionBlock : PlayerAction
     {
-        private PlayerInputActions.PlayerActions _playerActions;
-        private PlayerController _controller;
         private Weapon _playerWeapon;
 
-        public ActionBlock(PlayerInputActions.PlayerActions playerActions, PlayerController controller)
+        public ActionBlock(PlayerInputActions.PlayerActions playerActions, PlayerController controller) : base(playerActions, controller)
         {
             _controller = controller;
             _playerWeapon = _controller.Model.Weapon;
 
             _playerActions = playerActions;
-            playerActions.Block.started += OnStartBlocking;
-            playerActions.Block.performed += OnBlocking;
         }
 
         private void OnStartBlocking(InputAction.CallbackContext context)
@@ -46,6 +42,18 @@ namespace Project.Entities.Player.Actions
             _controller.View.RPC_PlayAnimation("ReleaseBlocking");
             _controller.Model.RPC_SetBlocking(false);
             _playerActions.Block.canceled -= OnReleaseBlocking;
+        }
+
+        public override void OnEnable()
+        {
+            _playerActions.Block.started += OnStartBlocking;
+            _playerActions.Block.performed += OnBlocking;
+        }
+
+        public override void OnDisable()
+        {
+            _playerActions.Block.started -= OnStartBlocking;
+            _playerActions.Block.performed -= OnBlocking;
         }
     }
 }

@@ -5,35 +5,35 @@ namespace Project.Entities.Player
 {
     public sealed class PlayerView : NetworkBehaviour
     {
-        [SerializeField] private Animator _animator;
-        [SerializeField] private MeshRenderer _meshRenderer;
+        private Animator _animator;
+        private MeshRenderer _meshRenderer;
         [SerializeField] private Material _ownerMaterial;
+
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+            _meshRenderer = GetComponentInChildren<MeshRenderer>();
+            
+        }
 
         public override void OnStartClient()
         {
-            base.OnStartClient();
-
-            ChangeMeshColor();
-
             if (!IsOwner)
             {
                 enabled = false;
                 return;
             }
+
+            ChangeMeshColor();
         }
 
-        [ObserversRpc]
-        private void ChangeMeshColor()
-        {
-            if (IsOwner)
-                _meshRenderer.material = _ownerMaterial;
-        }
+        private void ChangeMeshColor() => _meshRenderer.material = _ownerMaterial;
 
         [ServerRpc(RequireOwnership = false)]
         public void RPC_PlayAnimation(string animationName) => PlayAnimation(animationName);
 
         [ObserversRpc]
-        public void PlayAnimation(string animationName)
+        private void PlayAnimation(string animationName)
         {
             _animator.StopPlayback();
             _animator.Play(animationName);

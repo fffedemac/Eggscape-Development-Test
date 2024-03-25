@@ -1,76 +1,76 @@
 using UnityEngine;
-using Project.Entities.Player.Actions;
+using System.Collections;
+using Project.Behaviours.HealthComponent;
 using FishNet.Object;
-using Cinemachine;
 
 namespace Project.Entities.Player
 {
-    public sealed class PlayerController : NetworkBehaviour, IDamageable
+    public sealed partial class PlayerController : NetworkBehaviour, IHealthObservable
     {
-        [field: SerializeField] public PlayerModel Model {  get; private set; }
-        [field: SerializeField] public PlayerView View { get; private set; }
-        [field: SerializeField] public PlayerUI Interface { get; private set; }
-        private PlayerActions _inputs;
+        public PlayerModel Model {  get; private set; }
+        public PlayerView View { get; private set; }
+        private HealthComponent _healthComponent;
+        private Coroutine DeathCoroutine;
+        public bool IsPaused { get; set; } = true;
 
-        public override void OnStartClient()
+        private void Awake()
         {
-            base.OnStartClient();
+            Model = GetComponent<PlayerModel>();
+            View = GetComponent<PlayerView>();
 
-            if (IsOwner)
-            {
-                _inputs = new PlayerActions(this);
-                CinemachineVirtualCamera playerCamera = FindObjectOfType<CinemachineVirtualCamera>();
-                playerCamera.Follow = transform;
-            }
-            else
-                enabled = false;
-        }
-
-        public override void OnStartServer()
-        {
-            base.OnStartServer();
-            GameManager.Instance.Players.Add(this);
+            _healthComponent = GetComponent<HealthComponent>();
+            _healthComponent.RegisterObservable(this);
         }
 
         private void FixedUpdate()
         {
-            if (Model.IsPaused) return;
-            _inputs?.OnUpdate();
+            if (!IsPaused)
+                _inputs?.OnUpdate();
         }
+
+        public void PausePlayer(bool value)
+        {
+            if (value == true)
+            {
+                IsPaused = true;
+                _inputs?.OnDisable();
+            }
+            else
+            {
+                IsPaused = false;
+                _inputs?.OnEnable();
+            }
+        }
+
+        #region Player Death Behaviour
+        public void OnHealthNotify() => RPC_StartDying();
 
         [ServerRpc(RequireOwnership = false)]
-        public void RPC_TakeDamage(int damage) => TakeDamage(damage);
+        private void RPC_StartDying() => StartDying();
 
         [ObserversRpc]
-        public void TakeDamage(int damage)
+        private void StartDying()
         {
-            if (Model.IsBlocking)
-                damage = damage / 3;
-
-            Model.CurrentHealth -= damage;
-            Interface.RPC_UpdateHealthSlider(Model.CurrentHealth, Model.MaxHealth);
-
-            if (Model.CurrentHealth <= 0)
-                Die();
+            if (DeathCoroutine == null)
+                DeathCoroutine = StartCoroutine(Death());
+            else
+            {
+                StopCoroutine(DeathCoroutine);
+                DeathCoroutine = StartCoroutine(Death());
+            }
         }
 
-        public void Die()
+        private IEnumerator Death()
         {
-            Debug.Log("Player Death");
+            View.RPC_PlayAnimation("Death");
+            PausePlayer(true);
+            yield return new WaitForSeconds(3);
+
+            View.RPC_PlayAnimation("Idle");
+            _healthComponent.RPC_ResetValues();
+            PausePlayer(false);
         }
 
-        public override void OnStopClient()
-        {
-            base.OnStopClient();
-            if (!IsOwner) return;
-
-            _inputs.OnDisable();
-        }
-
-        public override void OnStopServer()
-        {
-            base.OnStopServer();
-            GameManager.Instance.Players.Remove(this);
-        }
+        #endregion
     }
 }

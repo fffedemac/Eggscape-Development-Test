@@ -4,10 +4,9 @@ using FishNet.Object;
 
 namespace Project.WeaponSystem
 {
-    public class MeleeWeapon : Weapon
+    public partial class MeleeWeapon : Weapon
     {
         [field: SerializeField] public float TimeAttacking {  get; private set; }
-
         private Coroutine AttackCoroutine;
 
         [ServerRpc(RequireOwnership = false)]
@@ -32,14 +31,7 @@ namespace Project.WeaponSystem
             IsAttacking = true;
             yield return new WaitForSeconds(TimeAttacking);
             IsAttacking = false;
-        }
-
-        protected virtual void OnTriggerEnter(Collider other)
-        {
-            if (!IsAttacking) return;
-
-            if (other.gameObject.layer == 6)
-                other.GetComponent<IDamageable>()?.TakeDamage(Damage);
+            _damagedObjects.Clear();
         }
     }
 }

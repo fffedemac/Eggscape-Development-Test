@@ -10,7 +10,6 @@ namespace Project.Menu
     {
         [SerializeField] private TMP_Text _playersText;
         [SerializeField] private TMP_Text _copiedRoomIDText;
-        [SerializeField] private Button _startButton;
         [SerializeField] private Button _backButton;
         [SerializeField] private Button _copyIDButton;
 
@@ -22,10 +21,7 @@ namespace Project.Menu
 
         public override void OnStartClient()
         {
-            base.OnStartClient();
-            if (IsHost)
-                _startButton.gameObject.SetActive(true);
-            else
+            if (!IsHost)
                 _playersText.text = "Waiting for Host to start...";
         }
 
