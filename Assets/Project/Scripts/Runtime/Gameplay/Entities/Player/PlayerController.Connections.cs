@@ -10,6 +10,8 @@ namespace Project.Entities.Player
 
         public override void OnStartClient()
         {
+            GameManager.Instance.PlayerConnected(this);
+
             if (IsOwner)
             {
                 _inputs = new PlayerActionsController(this);
@@ -21,7 +23,6 @@ namespace Project.Entities.Player
         }
 
         public override void OnStopClient() => _inputs.OnDisable();
-        public override void OnStartServer() => GameManager.Instance.Players.Add(this);
         public override void OnStopServer() => GameManager.Instance.Players.Remove(this);
     }
 }

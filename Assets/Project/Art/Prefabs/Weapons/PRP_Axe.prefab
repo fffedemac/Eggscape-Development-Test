@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3434584089707925493}
   - component: {fileID: 1731004711075627088}
   - component: {fileID: 4603018383147938970}
+  - component: {fileID: 7583222770778747965}
   - component: {fileID: 6283217974351793533}
   - component: {fileID: 463984370862607158}
   m_Layer: 0
@@ -85,6 +86,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7583222770778747965
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2657625865324565839}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.71418476, y: 2.4433331, z: 0.2464149}
+  m_Center: {x: 0.00000005986978, y: 1, z: -0.00000052112085}
 --- !u!114 &6283217974351793533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,11 +119,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa8ece2116c25c4a9bc2c0bb3290cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 0
   _addedNetworkObject: {fileID: 463984370862607158}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 463984370862607158}
   <Damage>k__BackingField: 10
-  <TimeAttacking>k__BackingField: 1.2
+  <TimeAttacking>k__BackingField: 1
 --- !u!114 &463984370862607158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,13 +139,14 @@ MonoBehaviour:
   <IsNested>k__BackingField: 0
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
-  _networkBehaviours: []
+  _networkBehaviours:
+  - {fileID: 6283217974351793533}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   SerializedTransformProperties:
     Position: {x: 0, y: 0, z: 0}
-    Rotation: {x: 0, y: 0, z: 0, w: 0}
-    LocalScale: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+    LocalScale: {x: 1, y: 1, z: 1}
   _isNetworked: 1
   _isGlobal: 0
   _initializeOrder: 0
