@@ -10,8 +10,13 @@ namespace Project.Entities.Player
 
         public override void OnStartClient()
         {
+            // Registers the player instance to notify the Host
+            // about when the game can start.
             GameManager.Instance.PlayerConnected(this);
 
+            // Assigns all necessary resources for the player's operation
+            // only if the instance is the owner.
+            // If the instance is not the owner, disables it to prevent operation execution on it.
             if (IsOwner)
             {
                 _inputs = new PlayerActionsController(this);

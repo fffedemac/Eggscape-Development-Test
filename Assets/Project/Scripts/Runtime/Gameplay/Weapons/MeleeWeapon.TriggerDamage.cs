@@ -9,6 +9,8 @@ namespace Project.WeaponSystem
     {
         private List<HealthComponent> _damagedObjects = new List<HealthComponent>();
 
+        // Locally checks if the hit entity was in the list.
+        // This ensures not hitting more than once per action on the entity.
         protected virtual void OnTriggerEnter(Collider other)
         {
             if (!IsAttacking) return;
@@ -21,6 +23,9 @@ namespace Project.WeaponSystem
             }
         }
 
+        // If the entity was not in the list, it deals damage
+        // to it and synchronizes it with the rest of the clients.
+        // Then adds the entity to the list to avoid dealing damage to it again.
         private void DoDamage(HealthComponent damageableObject)
         {
             int tempDamage = Damage;

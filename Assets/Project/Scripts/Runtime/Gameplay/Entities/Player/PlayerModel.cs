@@ -13,7 +13,9 @@ namespace Project.Entities.Player
 
         public bool IsBlocking {  get; set; }
 
-
+        // This way, the state of the variable is synchronized
+        // only when it is called.
+        // It is a more efficient way than using [SyncVar].
         [ServerRpc(RequireOwnership = false)]
         public void RPC_SetBlocking(bool value) => SetBlocking(value);
 

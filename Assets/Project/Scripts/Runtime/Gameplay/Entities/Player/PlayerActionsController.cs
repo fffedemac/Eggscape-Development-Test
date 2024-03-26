@@ -1,5 +1,7 @@
 namespace Project.Entities.Player.Actions
 {
+    // Class responsible for registering inputs along with player actions.
+    // Utilizes Unity's input system.
     public sealed class PlayerActionsController
     {
         private PlayerInputActions _inputs;
@@ -24,6 +26,7 @@ namespace Project.Entities.Player.Actions
             };
         }
 
+        // Methods necessary to control the state of each input simultaneously.
         public void OnUpdate()
         {
             foreach (PlayerActionUpdateable action in _playerActionsUpdateables)
