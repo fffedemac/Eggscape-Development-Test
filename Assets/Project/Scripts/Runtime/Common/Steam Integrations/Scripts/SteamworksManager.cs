@@ -14,6 +14,7 @@ namespace Project.SteamworksIntegrations
         [SerializeField] private NetworkManager _networkManager;
         [SerializeField] FishySteamworks.FishySteamworks _fishySteamworks;
 
+        // Create desired events while handling Lobbies.
         private Callback<LobbyCreated_t> LobbyCreated;
         private Callback<GameLobbyJoinRequested_t> JoinRequest;
         private Callback<LobbyEnter_t> LobbyEntered;
@@ -29,7 +30,10 @@ namespace Project.SteamworksIntegrations
             LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
         }
 
+        // Method registered in the Steamworks Behaviour initialization.
+        // The main scene is loaded additively to prevent the SteamConnection scene from closing.
         public void LoadMenu() => SceneManager.LoadScene(_menuScene, LoadSceneMode.Additive);
+
         public static void CreateLobby() => SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypePublic, 2);
 
         public static void JoinLobby(CSteamID steamID)
@@ -41,6 +45,8 @@ namespace Project.SteamworksIntegrations
         public static void LeaveLobby()
         {
             SteamMatchmaking.LeaveLobby(new CSteamID(CurrentLobbyID));
+
+            // Reset to 0 to avoid any inconvenience when trying to enter a new lobby.
             CurrentLobbyID = 0;
 
             Instance._fishySteamworks.StopConnection(false);
@@ -53,7 +59,8 @@ namespace Project.SteamworksIntegrations
             if (callback.m_eResult != EResult.k_EResultOK) return;
 
             CurrentLobbyID = callback.m_ulSteamIDLobby;
-            Debug.Log(SteamUser.GetSteamID().ToString());
+
+            // When creating the lobby, the client's address to which the connection will be made is saved.
             SteamMatchmaking.SetLobbyData(new CSteamID(CurrentLobbyID), "Host Address", SteamUser.GetSteamID().ToString());
             _fishySteamworks.SetClientAddress(SteamUser.GetSteamID().ToString());
             _fishySteamworks.StartConnection(true);

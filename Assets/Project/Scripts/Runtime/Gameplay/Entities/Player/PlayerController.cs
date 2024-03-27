@@ -26,6 +26,9 @@ namespace Project.Entities.Player
         {
             if (!IsPaused)
                 _inputs?.OnUpdate();
+
+            // Necessary null check to prevent errors in input calls
+            // when the client or server connection is interrupted.
         }
 
         public void PausePlayer(bool value)
@@ -70,7 +73,6 @@ namespace Project.Entities.Player
             _healthComponent.RPC_ResetValues();
             PausePlayer(false);
         }
-
         #endregion
     }
 }

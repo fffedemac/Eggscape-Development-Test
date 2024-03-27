@@ -9,6 +9,7 @@ namespace Project.WeaponSystem
         [field: SerializeField] public float TimeAttacking {  get; private set; }
         private Coroutine AttackCoroutine;
 
+        // Synchronizes the weapon state with the rest of the clients.
         [ServerRpc(RequireOwnership = false)]
         public override void RPC_PerformAttack() => PerformAttack();
 
@@ -31,6 +32,8 @@ namespace Project.WeaponSystem
             IsAttacking = true;
             yield return new WaitForSeconds(TimeAttacking);
             IsAttacking = false;
+
+            // Entities are cleared from the list each time the action ends.
             _damagedObjects.Clear();
         }
     }

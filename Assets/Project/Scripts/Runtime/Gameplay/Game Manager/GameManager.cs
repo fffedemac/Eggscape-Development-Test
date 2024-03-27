@@ -10,6 +10,7 @@ namespace Project
     {
         public static GameManager Instance;
 
+        // Automatically synchronizes the list of active players.
         [SyncObject] public readonly SyncList<PlayerController> Players = new SyncList<PlayerController>();
         [SerializeField] private Button _startGameButton;
         [SerializeField] private GameObject _lobbyPanel;
@@ -21,6 +22,8 @@ namespace Project
             _startGameButton.onClick.AddListener(() => RPC_StartGame());
         }
 
+        // Upon registering a connected player, checks
+        // if it's possible to start the game.
         public void PlayerConnected(PlayerController player)
         {
             if (!Players.Contains(player))

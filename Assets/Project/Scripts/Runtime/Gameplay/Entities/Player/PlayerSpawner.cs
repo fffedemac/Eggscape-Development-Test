@@ -5,6 +5,8 @@ using FishNet.Object;
 
 namespace Project.Entities.Player
 {
+    // This class is solely used for character selection
+    // through the lobby.
     public class PlayerSpawner : NetworkBehaviour
     {
         private Button _spawnPlayer1Button;
@@ -32,6 +34,9 @@ namespace Project.Entities.Player
             });
         }
 
+        // Spawns a playable controller through the server
+        // establishes its own connection so it cannot be controlled
+        // by other instances or the host itself.
         [ServerRpc(RequireOwnership = false)]
         private void RPC_SpawnPlayer(int prefab)
         {
